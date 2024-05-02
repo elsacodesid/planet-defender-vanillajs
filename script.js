@@ -218,7 +218,7 @@ class Enemy {
         }
       }
     }
-  }
+  }d
 }
 
 class Asteroid extends Enemy {
@@ -228,7 +228,7 @@ class Asteroid extends Enemy {
     this.frameX = 0;
     this.frameY = Math.floor(Math.random() * 4);
     this.maxFrame = 7;
-    this.lives = 5;
+    this.lives = 1;
     this.maxLives = this.lives;
   }
 }
@@ -333,13 +333,18 @@ class Game {
     context.textAlign = "left";
     context.font = "30px Impact";
     context.fillText("Score: " + this.score, 80, 120);
+
+    const originalFillStyle = context.fillStyle;
     
     for (let i = 0; i < this.lives; i++) {
-      context.fillStyle = "red";
+  
       context.strokeStyle = "black";
       context.strokeRect(100 + 15 * i, 160, 12, 30);
+      context.fillStyle = "rgb(0, 255, 0)";
       context.fillRect(100 + 15 * i, 160, 12, 30);
     }
+
+    context.fillStyle = originalFillStyle;
 
     if (this.gameOver) {
       context.textAlign = "center";
